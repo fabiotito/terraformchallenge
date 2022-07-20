@@ -14,7 +14,7 @@ terraform {
   }
 }
 
-#xd
+#xd2
 provider "azurerm" {
   features {}
 }
