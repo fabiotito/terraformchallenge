@@ -14,6 +14,7 @@ terraform {
   }
 }
 
+#xd
 provider "azurerm" {
   features {}
 }
