@@ -3,7 +3,7 @@ resource "azurerm_resource_group" "rsgr" {
   location = "eastus2"
     tags = {
       ambiente = "dev"
-      palanca = "baja"
+      palanca = "alta"
     }
 }
 
