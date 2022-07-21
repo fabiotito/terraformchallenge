@@ -54,7 +54,7 @@ jobs:
             ${process.env.PLAN}
             \`\`\`
             </details>
-            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+            *Pushed by: @${{ github.ref }}, Action: \`${{ github.event_name }}\`*`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -66,5 +66,5 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
