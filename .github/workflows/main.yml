@@ -7,7 +7,7 @@ on:
 
 env:
     AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
-    AZURE_WEBAPP_PACKAGE_PATH: ./app/Deploy4.zip
+    AZURE_WEBAPP_PACKAGE_PATH: ./app/Deploy5.zip
     AZURE_WEBAPP_NAME: wappeu2fabsd01
     AZURE_WEBAPP_SLOT_NAME: app-release
     AZURE_RESOURCE_GROUP: rsgreu2fabsd01
@@ -19,29 +19,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      #- name: Setup Terraform
-      #  uses: hashicorp/setup-terraform@v1
-      #  with:
-      #    # terraform_version: 0.13.0:
-      #    cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-#
-      ##- name: Terraform Format
-      ##  id: fmt
-      ##  run: terraform fmt -check
-#
-      #- name: Terraform Init
-      #  id: init
-      #  run: terraform init
-      #
-      #- name: Terraform Validate
-      #  id: validate
-      #  run: terraform validate -no-color
-#
-      #- name: Terraform Plan
-      #  id: plan
-      #  #if: github.event_name == 'pull_request'
-      #  run: terraform plan -no-color -input=false
-      #  continue-on-error: true
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      #- name: Terraform Format
+      #  id: fmt
+      #  run: terraform fmt -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+      
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Plan
+        id: plan
+        #if: github.event_name == 'pull_request'
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
 
       #- uses: actions/github-script@v6
       #  if: github.event_name == 'pull_request'
@@ -70,9 +70,9 @@ jobs:
       #  if: steps.plan.outcome == 'failure'
       #  run: exit 1
 
-      #- name: Terraform Apply
-      #  #if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      #  run: terraform apply -auto-approve -input=false
+      - name: Terraform Apply
+        #if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false
 
       - name: Azure Login
         uses: azure/login@v1
@@ -84,8 +84,8 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
           slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
           package:  ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-      #- name: Azure Swap Slots
-      #  uses: azure/CLI@v1
-      #  with:
-      #    inlineScript: |
-      #      az webapp deployment slot swap --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
+      - name: Azure Swap Slots
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az webapp deployment slot swap --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
