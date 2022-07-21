@@ -82,5 +82,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with: 
           app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
-          slot-name: ${{ env.app-AZURE_WEBAPP_SLOT_NAME }}
+          slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
           package:  ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
