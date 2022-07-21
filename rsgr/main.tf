@@ -1,9 +1,9 @@
 resource "azurerm_resource_group" "rsgr" {
-  name     = "devopsfabio"
-  location = "eastus2"
+  name     = local.rsgr_name
+  location = local.location
     tags = {
-      ambiente = "dev"
-      palanca = "alta"
+      enviroment = lower(var.env)
+      app_name = var.app_name
     }
 }
 
