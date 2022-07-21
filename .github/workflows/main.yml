@@ -88,4 +88,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-          az webapp deployment slot swap --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
+            az webapp deployment slot swap --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
