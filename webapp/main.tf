@@ -7,7 +7,7 @@ resource "azurerm_service_plan" "aspl" {
 }
 
 resource "azurerm_windows_web_app" "wapp" {
-  name                = local.wapp_code
+  name                = local.wapp_name
   resource_group_name = local.rsgr_name
   location            = local.location
   service_plan_id     = azurerm_service_plan.aspl.id
