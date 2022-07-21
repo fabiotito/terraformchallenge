@@ -2,7 +2,7 @@ resource "azurerm_service_plan" "aspl" {
   name                = local.aspl_name
   resource_group_name = local.rsgr_name
   location            = local.location
-  sku_name            = "s1"
+  sku_name            = "S1"
   os_type             = "Windows"
 }
 
