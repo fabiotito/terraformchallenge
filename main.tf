@@ -14,4 +14,8 @@ module "webapp" {
   location = "eu2"
   app_name = "fabs"
   number = "01"
+  
+  depends_on = [
+    module.rsgr
+  ]
 }
