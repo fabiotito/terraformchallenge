@@ -5,6 +5,12 @@ on:
     branches:
       - dev1
 
+env:
+    AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
+    AZURE_WEBAPP_PACKAGE_PATH: ./app/Deploy2.zip
+    AZURE_WEBAPP_NAME: wappeu2fabsd01
+    AZURE_WEBAPP_SLOT_NAME: app-release
+
 jobs:
   terraform:
     name: "Terraform"
@@ -67,3 +73,14 @@ jobs:
       - name: Terraform Apply
         #if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS  }}
+      - name: 'Run Azure webapp deploy action'
+        uses: azure/webapps-deploy@v2
+        with: 
+          app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+          slot-name: ${{ env.app-AZURE_WEBAPP_SLOT_NAME }}
+          package:  ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
