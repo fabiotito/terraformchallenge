@@ -7,10 +7,10 @@ on:
 
 env:
     AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
-    AZURE_WEBAPP_PACKAGE_PATH: ./app/Deploy2.zip
+    AZURE_WEBAPP_PACKAGE_PATH: ./app/Deploy3.zip
     AZURE_WEBAPP_NAME: wappeu2fabsd01
     AZURE_WEBAPP_SLOT_NAME: app-release
-
+    AZURE_RESOURCE_GROUP: rsgreu2fabsd01
 jobs:
   terraform:
     name: "Terraform"
@@ -84,3 +84,8 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
           slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
           package:  ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      - name: Azure Swap Slots
+      uses: azure/CLI@v1
+      with:
+      inlineScript: |
+      az webapp deployment slot swap --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
