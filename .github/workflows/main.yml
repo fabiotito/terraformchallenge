@@ -39,11 +39,23 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -input=false
+  Webappdeploy:
+    name: "Webappdeploy"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep for 60 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '60s'
 
       - name: Azure Login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: 'Run Azure webapp deploy action'
         uses: azure/webapps-deploy@v2
         with: 
