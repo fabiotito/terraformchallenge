@@ -1,5 +1,3 @@
-
-
 variable env {
     type = string
 }
@@ -10,6 +8,9 @@ variable app_name {
     type = string
 }
 variable number {
+    type = string
+}
+variable rsgr_name {
     type = string
 }
 
@@ -27,7 +28,8 @@ locals {
     }
 
     #resource group
-    rsgr_code ="rsgr"
+    lgan_code = "lgan"
+    rsgr_code = "rsgr"
     location = local.location_map[lower(var.location)]
-    rsgr_name = "${local.rsgr_code}${lower(var.location)}${var.app_name}${local.env_map[lower(var.env)]}${var.number}"
+    lgan_name = "${local.lgan_code}${lower(var.location)}${var.app_name}${local.env_map[lower(var.env)]}${var.number}"
 }
