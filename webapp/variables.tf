@@ -39,7 +39,7 @@ locals {
     location = local.location_map[lower(var.location)]
     aspl_name = "${local.aspl_code}${lower(var.location)}${var.app_name}${local.env_map[lower(var.env)]}${var.number}"
     wapp_name = "${local.wapp_code}${lower(var.location)}${var.app_name}${local.env_map[lower(var.env)]}${var.number}"
-    apin_name = "${local.apin_name}${lower(var.location)}${var.app_name}${local.env_map[lower(var.env)]}${var.number}"
+    apin_name = "${local.apin_code}${lower(var.location)}${var.app_name}${local.env_map[lower(var.env)]}${var.number}"
 
     #apin
     webtest_name = "${local.wapp_name}-${lower(var.env)}"
