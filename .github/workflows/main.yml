@@ -40,6 +40,7 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve -input=false
   Webappdeploy:
+    needs: terraform
     name: "Webappdeploy"
     runs-on: ubuntu-latest
     steps:
