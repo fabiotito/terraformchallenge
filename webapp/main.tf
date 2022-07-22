@@ -58,6 +58,18 @@ XML
   }
 }  
   
+
+resource "azurerm_monitor_action_group" "actiongroup" {
+  name                = "actiongroup-devopsteam"
+  resource_group_name = azurerm_application_insights_web_test.webtest.resource_group_na
+  short_name          = "DevopsTeams"
+
+  email_receiver {
+    name          = "Senddevopsteam"
+    email_address = "fabiotito1@outlook.com"
+  }
+}
+
 resource "azurerm_monitor_metric_alert" "azal" {
   name                = local.azal_name
   resource_group_name = azurerm_application_insights_web_test.webtest.resource_group_name
@@ -74,14 +86,3 @@ resource "azurerm_monitor_metric_alert" "azal" {
     action_group_id = azurerm_monitor_action_group.actiongroup.id
   }
 }  
-
-resource "azurerm_monitor_action_group" "actiongroup" {
-  name                = "actiongroup-devopsteam"
-  resource_group_name = azurerm_monitor_metric_alert.azal.resource_group_name
-  short_name          = "DevopsTeams"
-
-  email_receiver {
-    name          = "Senddevopsteam"
-    email_address = "fabiotito1@outlook.com"
-  }
-}
