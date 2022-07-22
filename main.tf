@@ -5,7 +5,7 @@ module "rsgr" {
   env = "dev"
   location = "eu2"
   app_name = "fabs"
-  number = "01"
+  number = "02"
 }
 
 module "lgan" {
@@ -13,7 +13,7 @@ module "lgan" {
   env = "dev"
   location = "eu2"
   app_name = "fabs"
-  number = "01"
+  number = "02"
   rsgr_name = module.rsgr.rsgr_name
 
   depends_on = [
@@ -26,7 +26,7 @@ module "webapp" {
   env = "dev"
   location = "eu2"
   app_name = "fabs"
-  number = "01"
+  number = "02"
   rsgr_name = module.rsgr.rsgr_name
   lgan_id = module.lgan.lgan_id
   
