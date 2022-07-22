@@ -3,7 +3,8 @@ name: "Terraform"
 on:
   push:
     branches:
-      - dev1
+      - main
+  pull_request:
 
 env:
     AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
