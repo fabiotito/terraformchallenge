@@ -61,7 +61,7 @@ XML
 
 resource "azurerm_monitor_action_group" "actiongroup" {
   name                = "actiongroup-devopsteam"
-  resource_group_name = azurerm_application_insights_web_test.webtest.resource_group_na
+  resource_group_name = azurerm_application_insights_web_test.webtest.resource_group_name
   short_name          = "DevopsTeams"
 
   email_receiver {
