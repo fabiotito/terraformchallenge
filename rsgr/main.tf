@@ -6,7 +6,3 @@ resource "azurerm_resource_group" "rsgr" {
       app_name = var.app_name
     }
 }
-
-output "rsgr_name" {
-  value = azurerm_resource_group.rsgr.name
-}
