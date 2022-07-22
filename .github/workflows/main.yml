@@ -7,7 +7,7 @@ on:
 
 env:
     AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
-    AZURE_WEBAPP_PACKAGE_PATH: ./app/Deploy6.zip
+    AZURE_WEBAPP_PACKAGE_PATH: ./app/Deploy.zip
     AZURE_WEBAPP_NAME: wappeu2fabsd01
     AZURE_WEBAPP_SLOT_NAME: app-release
     AZURE_RESOURCE_GROUP: rsgreu2fabsd01
